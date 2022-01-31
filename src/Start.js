@@ -1,20 +1,24 @@
 import {React, useRef, useEffect} from 'react'; 
 import styled from 'styled-components';
 import image from "./images/원석.jpg";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {setName} from "./redux/modules/user";
 
 
-const NameText = (props) => {
+const Start = (props) => {
 
 const navigate = useNavigate();
+const dispatch = useDispatch();
 
-const name = useSelector((state) => state.quiz.name);
+const name_ref = useRef(null);
 
 const btn = useRef();
 
 const clickEv = () => {
-  navigate("/question");
+  // name_ref.current.value
+  
+  // navigate('/question');
 }
 
 
@@ -27,9 +31,9 @@ useEffect(() => {
     <Container>
       <Image src={image} alt="wonseok"/>
       <Content>
-        나는 <Name>{name}</Name>에 대해서 얼마나 알고 있을까?
+        나는 <Name>{props.name}</Name>에 대해서 얼마나 알고 있을까?
       </Content>
-      <InputBox type="text" placeholder="내 이름"/>
+      <InputBox type="text" placeholder="내 이름" ref={name_ref}/>
       <Btn ref={btn}>시작하기</Btn>
     </Container>
   );
@@ -103,4 +107,4 @@ const Btn = styled.button`
 `;
 
 
-export default NameText;
+export default Start;

@@ -1,78 +1,62 @@
 
+
+
+
+
+
+
 // Actions
-// const LOAD = 'my-app/widgets/LOAD';
-// const CREATE = 'quiz/CREATE';
-// const UPDATE = 'my-app/widgets/UPDATE';
-// const REMOVE = 'quiz/REMOVE';
-const ADD_ANSWER = "quiz/ADD_ANSWER";
+// const LOAD   = 'quiz/LOAD';
+const CREATE = 'quiz/CREATE';
+const UPDATE = 'quiz/UPDATE';
+const REMOVE = 'quiz/REMOVE';
+
 
 // 초기값
 const initialState = {
-   quiz: [
-       {question: "키가 182cm 이다.", answer: "O"},
-       {question: "군대 가기 전 몸무게는 103키로였다", answer: "O"},
-       {question: "고향은 충청도다.", answer: "X"},
-       {question: "여자친구가 없다.", answer: "X"},
-       {question: "친동생이 있다.", answer: "O"}
+    list: [
+        { question: "원석이는 여자친구가 없다", answer: false},
+        { question: "원석이는 동생이 있다", answer: true},
+        { question: "원석이는 키가 182cm다", answer: true},
+        { question: "원석이는 몸무게가 60kg다", answer: false},
+        { question: "원석이는 가벼운 운동을 한다", answer: true},
     ],
-
-    user_answer_list: []
-
+    user_answer: []
 }
 
 
 // Action Creators
+// export function loadWidgets() {
+//     return { type: LOAD };
+// }
 
-export const addAnswer = (user_answer) => {
-    return {
-        type: ADD_ANSWER,
-        user_answer
-    }
+export function createWidget(widget) {
+    return { 
+        type: CREATE,
+        widget
+    };
+}
+
+export function updateWidget(widget) {
+    return { 
+        type: UPDATE,
+        widget
+    };
+}
+
+export function removeWidget(widget) {
+    return { 
+        type: REMOVE,
+        widget
+    };
 }
 
 
-// export function loadWidgets() {
-//     return {
-//         type: LOAD
-//     };
-// }
-
-// export function createWidget(widget) {
-//     return {
-//         type: CREATE,
-//         widget
-//     };
-// }
-
-// export function updateWidget(widget) {
-//     return {
-//         type: UPDATE,
-//         widget
-//     };
-// }
-
-// export function removeWidget(widget) {
-//     return {
-//         type: REMOVE,
-//         widget
-//     };
-// }
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
-    switch (action.type) {
-        
-        case "bucket/CREATE": {
-        
-        }
-
-        default:
-            return state;
-    }
+  switch (action.type) {
+    // do reducer stuff
+    default: return state;
+  }
 }
-
-// // side effects, only as applicable
-// // e.g. thunks, epics, etc
-// export function getWidget () {
-// return dispatch => get('/widget').then(widget => dispatch(updateWidget(widget)))
-// }
