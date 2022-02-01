@@ -7,9 +7,9 @@
 
 // Actions
 // const LOAD   = 'quiz/LOAD';
-const CREATE = 'quiz/CREATE';
-const UPDATE = 'quiz/UPDATE';
-const REMOVE = 'quiz/REMOVE';
+// const CREATE = 'user/CREATE';
+const UPDATE = 'user/UPDATE';
+// const REMOVE = 'user/REMOVE';
 
 
 // 초기값
@@ -19,10 +19,10 @@ const initialState = {
 
 
 // Action Creators
-export function createWidget(widget) {
+export function updateUserName(user_name) {
     return { 
-        type: CREATE,
-        widget
+        type: UPDATE,
+        user_name
     };
 }
 
@@ -31,8 +31,8 @@ export function createWidget(widget) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
-    case 'quiz/CREATE': {
-        return state;
+    case 'user/UPDATE': {
+        return {...state, user_name: action.user_name};
     }
     default: return state;
   }

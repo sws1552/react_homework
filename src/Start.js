@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import image from "./images/원석.jpg";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {setName} from "./redux/modules/user";
+import {updateUserName} from "./redux/modules/user";
 
 
 const Start = (props) => {
@@ -16,9 +16,10 @@ const name_ref = useRef(null);
 const btn = useRef();
 
 const clickEv = () => {
-  // name_ref.current.value
+
+  dispatch(updateUserName(name_ref.current.value));
   
-  // navigate('/question');
+  navigate('/question');
 }
 
 

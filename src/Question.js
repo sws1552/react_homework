@@ -1,18 +1,49 @@
 import React from "react";
 import styled from "styled-components";
 import img from "./images/원석2.jpg";
+import {useSelector, useDispatch} from "react-redux";
+import {createUserAnswer} from "./redux/modules/quiz";
+import {useNavigate} from "react-router-dom";
 
 const Question = (props) => {
 
+    const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
+    const quiz_list = useSelector((state) => state.quiz.list);
+    
+    const user_answer = useSelector((state) => state.quiz.user_answer);
+
+    
+    const setAnswer = (answer) => {
+        dispatch(createUserAnswer(answer));
+    }
+
+    React.useEffect(() => {
+        
+        if(quiz_list.length === user_answer.length){
+            navigate('/score');
+            return;
+        }
+
+    }, [user_answer]);
+
+    if(quiz_list.length === user_answer.length){
+        return null;
+    }
 
     return (
         <Container>
-            <Title>0번 문제</Title>
-            <Problem>원석이는 2살이다.</Problem>
+            <Title>{user_answer.length+1}번 문제</Title>
+            <Problem>{quiz_list[user_answer.length].question}</Problem>
             <Image />
-            <Oanswer>O</Oanswer>
-            <Xanswer>X</Xanswer>
+            <Oanswer onClick={() => {
+                setAnswer(true);
+            }}>O</Oanswer>
+            <Xanswer onClick={() => {
+                setAnswer(false);
+            }}>X</Xanswer>
         </Container>
     );
 }

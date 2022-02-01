@@ -30,10 +30,10 @@ const initialState = {
 //     return { type: LOAD };
 // }
 
-export function createWidget(widget) {
+export function createUserAnswer(answer) {
     return { 
         type: CREATE,
-        widget
+        answer
     };
 }
 
@@ -57,6 +57,12 @@ export function removeWidget(widget) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
+    case "quiz/CREATE": {
+
+        const new_user_answer = [...state.user_answer, action.answer];
+
+        return {...state, user_answer: new_user_answer};
+    }
     default: return state;
   }
 }

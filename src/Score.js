@@ -1,15 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
 
 
 
 
 const Score = (props) => {
+
+    const name = useSelector((state) => state.user.user_name);
+    const answer = useSelector((state) => state.quiz.list);
+    const user_answer = useSelector((state) => state.quiz.user_answer);
+
+    let score = 0;
+    answer.forEach((item, i) => {
+        if(item.answer === user_answer[i]){
+            score += 1;
+        }
+    });
+
+
     return (
         <Container>
             <Wrap>
-                <Title><Name>스파르타 코딩</Name> 퀴즈에 대한 내 점수는?</Title>
-                <Jumsu>100점</Jumsu>
+                <Title><Name>{name}</Name>님 퀴즈에 대한 내 점수는?</Title>
+                <Jumsu>{score/5*100}점</Jumsu>
                 <div style={{marginTop: "30px", fontWeight: "700", fontSize:"5em"}}>고 생 했 다.</div>
                 <GogoJumsu>점수 보기</GogoJumsu>
                 <GogoRank>랭킹 보기</GogoRank>
